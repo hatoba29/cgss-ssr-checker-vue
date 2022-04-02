@@ -1,0 +1,16 @@
+* {
+  font-family: "Noto Sans JP";
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+li {
+  list-style: none;
+}
