@@ -26,12 +26,17 @@ watch(checklist, (c) => {
 // 카드 선택 토글
 const toggleChecked = (e: MouseEvent) => {
   const target = e.currentTarget as Element
+
+  // update checklist
   const id = target.id
   if (checklist.has(id)) {
     checklist.delete(id)
   } else {
     checklist.add(id)
   }
+
+  // update class
+  target.classList.toggle("checked")
 }
 
 // 조건에 맞는 카드 필터
