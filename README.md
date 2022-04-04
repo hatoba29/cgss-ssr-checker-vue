@@ -1,46 +1,50 @@
-# cgss-ssr-checker-vue
+# ✅ CGSS SSR Checker
 
-This template should help get you started developing with Vue 3 in Vite.
+The iDOLM@STER Cinderella Girls Starlight Stage SSR Checker
 
-## Recommended IDE Setup
+You can record SSR cards you have and filter cards with various options.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+# ⚙️ Options
 
-## Type Support for `.vue` Imports in TS
+- 💬 Type
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+  Show selected type's idols
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+  - Cute
+  - Cool
+  - Passion
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- 🌟 Limited
 
-## Customize configuration
+  Show idols available in selected gacha type
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+  - None: Show idols available in any gacha
+  - Monthly: Show idols only available in monthly limited gacha
+  - Blanc: Show idols only available in Cinderella Fes. Blanc
+  - Noir: Show idols only available in Cinderella Fes. Noir
 
-## Project Setup
+- 📇 Card Name
 
-```sh
-npm install
-```
+  Search card name in Japanese (or as is)
 
-### Compile and Hot-Reload for Development
+- 🔖 Idol Name
 
-```sh
-npm run dev
-```
+  Search idol name in English, Japanese, Korean.
 
-### Type-Check, Compile and Minify for Production
+- 🖥️ Display Option
 
-```sh
-npm run build
-```
+  - Show Card Name: Show/Hide card name
+  - Awaken: Show awaken/normal card image
 
-### Lint with [ESLint](https://eslint.org/)
+# 🛠️ Tech Stack
 
-```sh
-npm run lint
-```
+![typescript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
+![vite](https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+![prettier](https://img.shields.io/badge/prettier-1a2b34?style=for-the-badge&logo=prettier&logoColor=F7B93E)
+
+# ✨ Inspiration
+
+This project is inspired from [piniky-lab](https://piniky-lab.net/)'s [デレステ SSR 所有率](https://piniky-lab.net/cgss/chara)
