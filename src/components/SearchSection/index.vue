@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-
+import opt from "@/store"
 import OptType from "./OptType.vue"
 import OptLimited from "./OptLimited.vue"
 import OptName from "./OptName.vue"
@@ -8,9 +8,7 @@ import OptDisplay from "./OptDisplay.vue"
 
 const isOpen = ref(false)
 
-const showSearch = () => {
-  isOpen.value = !isOpen.value
-}
+const toggleFilter = () => (isOpen.value = !isOpen.value)
 
 const toggleChecked = (e: MouseEvent) => {
   const target = e.currentTarget as Element
@@ -19,65 +17,127 @@ const toggleChecked = (e: MouseEvent) => {
 </script>
 
 <template>
-  <section :class="{ open: isOpen }">
-    <button class="opener" @click="showSearch">
-      <v-icon name="io-chevron-up-sharp" id="arrow" :class="{ open: isOpen }" />
-    </button>
-
-    <ul class="options">
+  <header>✅&nbsp;CGSS SSR Checker</header>
+  <button type="button" class="filter-btn" @click="toggleFilter">
+    <v-icon name="io-filter-sharp" />
+    Filter / Option
+  </button>
+  <div class="filters">
+    <template v-for="(show, key) in opt.type" :key="key">
+      <div class="filter-item" :class="key" v-if="show">type:{{ key }}</div>
+    </template>
+    <template v-for="(show, key) in opt.limited" :key="key">
+      <div class="filter-item" v-if="show">gacha:{{ key }}</div>
+    </template>
+    <div class="filter-item" v-if="opt.cardName">card: {{ opt.cardName }}</div>
+    <div class="filter-item" v-if="opt.idolName">idol: {{ opt.idolName }}</div>
+  </div>
+  <Transition>
+    <ul v-if="isOpen" class="options">
       <OptType :toggle-checked="toggleChecked" />
       <OptLimited :toggle-checked="toggleChecked" />
       <OptName />
       <OptDisplay :toggle-checked="toggleChecked" />
     </ul>
-  </section>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
-section {
-  position: fixed;
-  bottom: -340px;
-  width: 100%;
-  background-color: white;
-  transition: bottom 0.6s ease-out;
+* {
+  /* type color */
+  --cute: #f6006e;
+  --cool: #036bfb;
+  --passion: #fbb127;
+}
 
-  &.open {
-    bottom: 0;
+header {
+  height: 36px;
+  margin-top: 12px;
+  padding: 0 8px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.filter-btn {
+  margin: 10px 8px;
+  border: 1px solid black;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 4px;
   }
 }
 
-.opener {
-  width: 100%;
-  height: 48px;
-  border: none;
-  background-color: white;
-  box-shadow: 0 -5px 10px -5px black;
-  cursor: pointer;
-
+.filters {
+  margin: 4px 8px;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
 
-  #arrow {
-    transition: transform 0.3s ease-out;
-    &.open {
-      transform: rotate(180deg);
+  .filter-item {
+    height: 26px;
+    margin: 4px;
+    border-radius: 13px;
+    padding: 0 10px;
+    background-color: #528bff;
+    user-select: none;
+
+    color: white;
+    font-size: 12px;
+    line-height: 24px;
+
+    &.cute {
+      background-color: var(--cute);
+    }
+    &.cool {
+      background-color: var(--cool);
+    }
+    &.passion {
+      background-color: var(--passion);
     }
   }
 }
 
 .options {
-  height: 340px;
-  margin: 0 8px;
+  height: 180px;
+  margin: 8px 12px;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  &.v-enter-active,
+  &.v-leave-active {
+    transition: height 0.5s ease, margin 0.5s ease-out;
+  }
+
+  &.v-enter-from,
+  &.v-leave-to {
+    height: 0;
+    margin: 0 12px;
+  }
 }
 
 :deep(.option-item) {
-  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 :deep(.option-name) {
   margin: unset;
-  margin-left: 8px;
   margin-bottom: 10px;
 
   font-size: 16px;
@@ -85,7 +145,8 @@ section {
 }
 
 :deep(.option-label) {
-  margin: 0 6px;
+  width: fit-content;
+  margin: 4px 0;
   border-radius: 16px;
   padding: 4px 12px;
   background-color: #c8c8c8;
@@ -103,13 +164,13 @@ section {
 
   &.checked {
     &.cute {
-      background-color: #f6006e;
+      background-color: var(--cute);
     }
     &.cool {
-      background-color: #036bfb;
+      background-color: var(--cool);
     }
     &.passion {
-      background-color: #fbb127;
+      background-color: var(--passion);
     }
 
     background-color: #528bff;
@@ -119,9 +180,12 @@ section {
 :deep(input[type="text"]) {
   width: 200px;
   height: 28px;
-  margin-left: 8px;
-  border: 1px grey solid;
-  border-radius: 6px;
+  border: none;
+  border-bottom: 2px solid black;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 :deep(input[type="checkbox"]) {

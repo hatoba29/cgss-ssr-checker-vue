@@ -73,40 +73,31 @@ const filtered = computed(() => {
 
 <template>
   <main>
-    <header>✅&nbsp;CGSS SSR Checker</header>
     <section
       class="card-container"
       :class="{ awaken: opt.awaken, 'hide-name': !opt.showName }"
     >
-      <template v-for="d in filtered" :key="d.id">
-        <article :id="d.id" class="card" @click="toggleChecked">
-          <img class="normal" :src="`${IMG}${d.id}.png`" />
-          <img class="awaken" :src="`${IMG}${Number(d.id) + 1}.png`" />
-          <div class="card-name">[{{ d.card_name }}] {{ d.name }}</div>
-        </article>
-      </template>
+      <article
+        v-for="d in filtered"
+        :key="d.id"
+        :id="d.id"
+        class="card"
+        @click="toggleChecked"
+      >
+        <img class="normal" :src="`${IMG}${d.id}.png`" />
+        <img class="awaken" :src="`${IMG}${Number(d.id) + 1}.png`" />
+        <div class="card-name">[{{ d.card_name }}] {{ d.name }}</div>
+      </article>
     </section>
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   width: 100%;
-  height: calc(100vh - 48px);
+  height: 100vh;
   padding-bottom: 12px;
   overflow: hidden scroll;
-}
-
-header {
-  height: 36px;
-  margin: 12px 0;
-  padding: 0 8px;
-
-  display: flex;
-  align-items: center;
-
-  font-size: 20px;
-  font-weight: 700;
 }
 
 .card-container {
