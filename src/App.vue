@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import CardSection from "./components/CardSection.vue"
 import SearchBar from "./components/SearchSection/index.vue"
 </script>
 
 <template>
+  <CardSection />
   <SearchBar />
 </template>
 
