@@ -39,29 +39,10 @@ section {
   bottom: -340px;
   width: 100%;
   background-color: white;
+  transition: bottom 0.6s ease-out;
 
   &.open {
-    animation: open 0.7s ease-out forwards;
-  }
-  &.close {
-    animation: close 0.7s ease-out forwards;
-  }
-
-  @keyframes open {
-    0% {
-      bottom: -340px;
-    }
-    100% {
     bottom: 0;
-    }
-  }
-  @keyframes close {
-    0% {
-      bottom: 0;
-    }
-    100% {
-      bottom: -340px;
-    }
   }
 }
 
@@ -77,27 +58,10 @@ section {
   justify-content: center;
   align-items: center;
 
-  #arrow.open {
-    animation: arrowOpen 0.3s ease-out forwards;
-  }
-  #arrow.close {
-    animation: arrowClose 0.3s ease-out forwards;
-  }
-
-  @keyframes arrowOpen {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
+  #arrow {
+    transition: transform 0.3s ease-out;
+    &.open {
       transform: rotate(180deg);
-    }
-  }
-  @keyframes arrowClose {
-    0% {
-      transform: rotate(180deg);
-    }
-    100% {
-      transform: rotate(0);
     }
   }
 }
