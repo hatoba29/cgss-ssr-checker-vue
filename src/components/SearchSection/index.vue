@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import opt from "@/store"
 
 import OptType from "./OptType.vue"
 import OptLimited from "./OptLimited.vue"
 import OptName from "./OptName.vue"
 import OptDisplay from "./OptDisplay.vue"
 
-const isOpen = ref<"open" | "close">("close")
+const isOpen = ref(false)
 
 const showSearch = () => {
-  if (isOpen.value == "close") {
-    isOpen.value = "open"
-  } else {
-    isOpen.value = "close"
-  }
+  isOpen.value = !isOpen.value
 }
 
 const toggleChecked = (e: MouseEvent) => {
@@ -24,9 +19,9 @@ const toggleChecked = (e: MouseEvent) => {
 </script>
 
 <template>
-  <section :class="isOpen">
+  <section :class="{ open: isOpen }">
     <button class="opener" @click="showSearch">
-      <v-icon name="io-chevron-up-sharp" id="arrow" :class="isOpen" />
+      <v-icon name="io-chevron-up-sharp" id="arrow" :class="{ open: isOpen }" />
     </button>
 
     <ul class="options">
@@ -57,7 +52,7 @@ section {
       bottom: -340px;
     }
     100% {
-      bottom: 0;
+    bottom: 0;
     }
   }
   @keyframes close {
