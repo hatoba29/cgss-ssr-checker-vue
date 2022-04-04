@@ -14,7 +14,11 @@ const props = defineProps<{
     <h1 class="option-name">Limited</h1>
     <template v-for="key in keys" :key="key">
       <input type="checkbox" :id="key" v-model="opt.limited[key]" />
-      <label class="option-label" :for="key" @click="props.toggleChecked">
+      <label
+        class="option-label checked"
+        :for="key"
+        @click="props.toggleChecked"
+      >
         {{ key.toUpperCase().slice(0, 1) + key.slice(1) }}
       </label>
     </template>

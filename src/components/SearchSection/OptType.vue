@@ -15,7 +15,7 @@ const props = defineProps<{
     <template v-for="key in keys" :key="key">
       <input type="checkbox" :id="key" v-model="opt.type[key]" />
       <label
-        class="option-label"
+        class="option-label checked"
         :class="key"
         :for="key"
         @click="props.toggleChecked"
