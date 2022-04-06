@@ -4,8 +4,8 @@ import SearchBar from "./components/SearchSection/index.vue"
 </script>
 
 <template>
-  <CardSection />
   <SearchBar />
+  <CardSection />
 </template>
 
 <style lang="scss">
