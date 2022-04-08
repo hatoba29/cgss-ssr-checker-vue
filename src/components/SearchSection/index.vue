@@ -17,29 +17,35 @@ const toggleChecked = (e: MouseEvent) => {
 </script>
 
 <template>
-  <header>✅&nbsp;CGSS SSR Checker</header>
-  <button type="button" class="filter-btn" @click="toggleFilter">
-    <v-icon name="io-filter-sharp" />
-    Filter / Option
-  </button>
-  <div class="filters">
-    <template v-for="(show, key) in opt.type" :key="key">
-      <div class="filter-item" :class="key" v-if="show">type:{{ key }}</div>
-    </template>
-    <template v-for="(show, key) in opt.limited" :key="key">
-      <div class="filter-item" v-if="show">gacha:{{ key }}</div>
-    </template>
-    <div class="filter-item" v-if="opt.cardName">card: {{ opt.cardName }}</div>
-    <div class="filter-item" v-if="opt.idolName">idol: {{ opt.idolName }}</div>
-  </div>
-  <Transition>
-    <ul v-if="isOpen" class="options">
-      <OptType :toggle-checked="toggleChecked" />
-      <OptLimited :toggle-checked="toggleChecked" />
-      <OptName />
-      <OptDisplay :toggle-checked="toggleChecked" />
-    </ul>
-  </Transition>
+  <header>
+    <h1>✅&nbsp;CGSS SSR Checker</h1>
+    <button type="button" class="filter-btn" @click="toggleFilter">
+      <v-icon name="io-filter-sharp" />
+      Filter / Option
+    </button>
+    <div class="filters">
+      <template v-for="(show, key) in opt.type" :key="key">
+        <div class="filter-item" :class="key" v-if="show">type:{{ key }}</div>
+      </template>
+      <template v-for="(show, key) in opt.limited" :key="key">
+        <div class="filter-item" v-if="show">gacha:{{ key }}</div>
+      </template>
+      <div class="filter-item" v-if="opt.cardName">
+        card: {{ opt.cardName }}
+      </div>
+      <div class="filter-item" v-if="opt.idolName">
+        idol: {{ opt.idolName }}
+      </div>
+    </div>
+    <Transition>
+      <ul v-if="isOpen" class="options">
+        <OptType :toggle-checked="toggleChecked" />
+        <OptLimited :toggle-checked="toggleChecked" />
+        <OptName />
+        <OptDisplay :toggle-checked="toggleChecked" />
+      </ul>
+    </Transition>
+  </header>
 </template>
 
 <style lang="scss" scoped>
@@ -50,7 +56,7 @@ const toggleChecked = (e: MouseEvent) => {
   --passion: #fbb127;
 }
 
-header {
+h1 {
   height: 36px;
   margin-top: 12px;
   padding: 0 8px;
