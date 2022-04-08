@@ -80,7 +80,7 @@ const filtered = computed(() => {
       <article
         v-for="d in filtered"
         :key="d.id"
-        :id="d.id"
+        :id="d.id.toString()"
         class="card"
         @click="toggleChecked"
       >
