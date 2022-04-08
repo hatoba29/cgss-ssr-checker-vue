@@ -11,4 +11,10 @@ import SearchBar from "./components/SearchSection/index.vue"
 <style lang="scss">
 @import "./assets/base.css";
 @import "./assets/normalize.css";
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 </style>
