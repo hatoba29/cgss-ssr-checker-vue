@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref, watch, computed, onMounted } from "vue"
+import { reactive, watch, computed, onMounted } from "vue"
 import Data from "@/assets/data.json"
 import opt from "@/store"
 import type { Option } from "@/types/option"
 
 const IMG = "https://hidamarirhodonite.kirara.ca/icon_card/"
-const isLoaded = ref(false)
 const checklist = reactive<Set<string>>(new Set())
 
 // 이미 저장된 체크리스트가 있는지 확인
@@ -16,7 +15,6 @@ onMounted(() => {
     ) as string[]
     prevChecklist.forEach((c) => checklist.add(c))
   }
-  isLoaded.value = true
 })
 // checklist가 바뀔 때마다 localStorage도 업데이트
 watch(checklist, (c) => {
@@ -34,9 +32,6 @@ const toggleChecked = (e: MouseEvent) => {
   } else {
     checklist.add(id)
   }
-
-  // update class
-  target.classList.toggle("checked")
 }
 
 // 조건에 맞는 카드 필터
@@ -80,8 +75,9 @@ const filtered = computed(() => {
       <article
         v-for="d in filtered"
         :key="d.id"
-        :id="d.id.toString()"
+        :id="d.id"
         class="card"
+        :class="{ checked: checklist.has(d.id) }"
         @click="toggleChecked"
       >
         <img class="normal" :src="`${IMG}${d.id}.png`" />
